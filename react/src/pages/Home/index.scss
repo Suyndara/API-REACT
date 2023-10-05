@@ -1,0 +1,187 @@
+.pagina-aparelhos{
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+
+
+  .lateral{
+    display: flex;
+    flex-direction: column;
+    background-color: #550073;
+    height: auto;
+    width: 20%;
+
+    .imagem-texto{
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0px;
+      align-items: center;
+      margin-bottom: 150px;
+
+      h1{
+        color: #fff;
+        font-size: 30px;
+        font-family: 'inter';
+      }
+
+      img{
+        width: 60%;
+      }
+    }
+
+    .titulo{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .casa{
+      display: flex;
+      flex-direction: row;
+      height: 8%;
+      align-items: center;
+      margin-bottom: 10px;
+
+      img{
+        width: 20%;
+        margin-right: 15px;
+      }
+
+      h1{
+        color: #fff;
+        font-family: 'inter';
+        font-size: 23px;
+        margin-top: 10px;
+      }
+    }
+
+    .purple{
+      display: flex;
+      flex-direction: row;
+      background-color: #fff;
+      align-items: center;
+      height: 8%;
+
+      img{
+        width: 23%;
+        margin-right: 5px;
+      }
+
+      h1{
+        color: #550073;
+        font-family: 'inter';
+        font-size: 23px;
+      }
+    }
+  }
+
+  .pagina-controle{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .bem-vindo{
+      background-color: #E8E7E7;
+      padding: 15px 20px;
+      width: 100%;
+
+      p{
+      color: #00000079; 
+      font-family: 'inter';       
+      }
+    }
+
+    .area{
+      padding: 20px 100px;
+
+      h2{
+        font-family: 'inter';
+        color: #540073c0;
+      }
+
+      h1{
+        font-family: 'inter';
+        color: #550073;
+      }
+    }
+  }
+
+  .cadastro{
+    display: flex;
+    flex-direction: column; 
+    background-color: #b5b5b557;
+    height: 400px;
+    width: 80%;
+    margin-left: 80px;
+    border-radius: 20px;
+    padding: 30px 60px;
+    margin-bottom: 80px;
+
+    h2{
+      color: #540073bb;
+      margin-bottom: 30px;
+    }
+
+    input{
+      width: 300px;
+      padding: 8px 20px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+      color: #550073;
+    }
+
+    select{
+      width: 300px;
+      padding: 8px 20px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 40px;
+      color: #550073;
+    }
+
+    button{
+      padding: 10px 20px;
+      background-color: #550073;
+      color: #fff;
+      border-radius: 10px;
+      width: 200px;
+      display: flex;
+      align-self: center;
+      justify-content: center;
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    button:hover{
+      outline: 0.5px solid purple;
+      background-color: white;
+      color: purple;
+    }
+  }
+
+  .consulta{
+    display: flex;
+    flex-direction: column; 
+    background-color: #b5b5b557;
+    height: 400px;
+    width: 80%;
+    margin-left: 80px;
+    border-radius: 20px;
+    padding: 30px 60px;
+    margin-bottom: 40px;
+
+    h2{
+      color: #540073ab;
+      margin-bottom: 10px;
+    }
+
+    input{
+      width: 300px;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 5px;
+    }
+  }
+}

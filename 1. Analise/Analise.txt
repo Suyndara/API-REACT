@@ -1,0 +1,6 @@
+{
+  "modelo": "Redmi Note 11",
+  "marca": "Xiaomi",
+  "ano": "2019/01/01",
+  "disponivel": 1
+}
