@@ -25,3 +25,10 @@ export async function BuscarPorID(id) {
     const resposta = await api.post(`/buscar/${id}`);
     return resposta.data;
 }
+
+
+
+
+export async function AlterarFilme(id, modelo) {
+    const resposta = await api.put(`/alterar/`)
+}

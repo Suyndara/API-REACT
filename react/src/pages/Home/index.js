@@ -23,14 +23,21 @@ export default function Home(){
 
     async function Adicionar() {
       try {
-        const resp = await axios.post('http://localhost:5000/celular', {
-          modelo:modelo,
-          marca: marca,
-          ano:ano,
-          disponivel: disponivel
-        });
 
-        return resp
+        if ( modelo === 0 ) {
+          const resp = await axios.post('http://localhost:5000/celular', {
+            modelo:modelo,
+            marca: marca,
+            ano:ano,
+            disponivel: disponivel
+          });
+
+          return resp;
+        }
+
+        else {
+          
+        }
 
       } catch (error) {
           alert(error.response.data.erro);
