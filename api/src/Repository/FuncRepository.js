@@ -78,30 +78,6 @@ export async function Deletar(id) {
 
 
 
-
-
-export async function ConsultarDelete(busca) {
-    const comando = `
-        select	    CellFinder_id,
-                    Modelo,
-                    Marca,
-                    Ano,
-                    Disponivel
-        from	    CellFinder
-        where	    CellFinder_id like ?
-    `;
-
-    const [ dados ] = await conexao.query(comando, [
-        '%' + busca + '%'
-    ]);
-
-    return dados;
-};
-
-
-
-
-
 export async function Alterar(id, item) {
     const comando = `
         update  CellFinder

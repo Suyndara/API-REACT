@@ -1,4 +1,4 @@
-import { AdicionarCel, Alterar, Buscar, BuscarPorID, Consultar, ConsultarDelete, Deletar } from "../Repository/FuncRepository.js";
+import { AdicionarCel, Alterar, Buscar, BuscarPorID, Consultar, Deletar } from "../Repository/FuncRepository.js";
 
 import { Router } from "express";
 const Endpoint = Router();
@@ -56,12 +56,12 @@ Endpoint.delete('/deletar/:id', async (req, resp) => {
         
         const { id } = req.params;
         const resposta = await Deletar(id);
+        if ( resposta != 1 ) throw new Error('Não pode ser removido');
 
-
-        resp.send()
+        resp.status(204).send();
 
     } catch (error) {
-        resp.status(500).send({ erro: error.message });
+        resp.status(400).send({ erro: error.message });
     }
 })
 

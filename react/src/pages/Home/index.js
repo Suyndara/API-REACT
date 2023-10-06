@@ -4,37 +4,59 @@ import Purple from '../../assets/images/celular-purple.svg';
 import Celular from '../../assets/images/celular.svg';
 
 
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 
-import { ListarTudo, ListarModelo, RemoverFilme } from '../../api/CellFinder.js';
+import { ListarTudo, ListarModelo, RemoverFilme, AdicionarCell, AlterarCell } from '../../api/CellFinder.js';
 
 export default function Home(){
 
     const [ modelo, setModelo ] = useState('');
     const [ marca, setMarca ] = useState('');
     const [ ano, setAno ] = useState('');
-    const [ disponivel, setDisponivel ] = useState(0);
+    const [ disponivel, setDisponivel ] = useState(false);
 
     const [ listar, setListar ] = useState([]);
     const [ filtro, setFiltro ] = useState('');
+    const [ id, setID ] = useState(0);
 
 
     async function Adicionar() {
       try {
-          const resp = await axios.post('http://localhost:5000/celular', {
-            modelo:modelo,
-            marca: marca,
-            ano:ano,
-            disponivel: disponivel
-          });
 
-          return resp;
+        if (id === 0) {
+          const resposta = await AdicionarCell(modelo, marca, ano, disponivel)
+          alert('Filme Cadastrado com sucesso')
+
+          setID(resposta.id)
+        }
+
+        else {
+          await AlterarCell(id, modelo, marca, ano, disponivel);
+          alert('Cadastrado com Sucesso')
+        }
 
       } catch (error) {
           alert(error.response.data.erro);
       }
+    }
+
+    function NovoClick() {
+      setID(0);
+      setModelo('');
+      setMarca('');
+      setAno(0)
+      setDisponivel(true)
+    }
+
+
+    async function AtualizarCell() {
+      const resposta = await AlterarCell()
+            setModelo(resposta.modelo);
+            setMarca(resposta.marca);
+            setAno(resposta.ano.substr(0, 10));
+            setDisponivel(resposta.disponivel)
+            setID(resposta.id);
     }
 
 
@@ -49,8 +71,10 @@ export default function Home(){
     }
 
 
-    async function DeletarFilme(id, nome) {
-      alert(id + '-' + nome)
+    async function DeletarFilme(CellFinder_id, Modelo) {
+        const resp = await RemoverFilme(CellFinder_id, Modelo);
+        alert('Excluiu')
+        return resp;
     }
 
     useEffect(() => {
@@ -102,7 +126,8 @@ export default function Home(){
                   <label> Disponivel </label>
                 </div>
 
-              <button onClick={Adicionar}>Cadastrar</button>
+              <button onClick={Adicionar}> {id === 0 ? 'Salvar' : 'Alterar' } </button>
+              <button onClick={NovoClick}> Novo Filme </button>
             </div>
 
             <div className='consulta'>
@@ -114,6 +139,7 @@ export default function Home(){
                 <table>
                   <thead>
                     <tr>
+                      <th> IDENTIFICADOR </th>
                       <th> MODELO </th>
                       <th> MARCA </th>
                       <th> ANO </th>
@@ -123,12 +149,13 @@ export default function Home(){
                   <tbody>
                     {listar.map(item => 
                       <tr>
+                        <td> { item.CellFinder_id } </td>
                         <td> { item.Modelo } </td>
                         <td> { item.Marca } </td>
                         <td> { item.Ano.substr(0, 10)} </td>
                         <td> { item.Disponivel ? 'Disponivel' : 'Não Disponivel' } </td>
-                        <td> <button> Alterar </button> </td>
-                        <td> <button onClick={() => DeletarFilme(item.id, item.nome)}> Deletar </button> </td>
+                        <td> <button onClick={() => AtualizarCell(item)}> Alterar </button> </td>
+                        <td> <button onClick={() => DeletarFilme(item.CellFinder_id, item.Modelo)}> Deletar </button> </td>
                       </tr>  
                     )}
                   </tbody>
