@@ -26,7 +26,7 @@ export default function Home(){
 
         if (id === 0) {
           const resposta = await AdicionarCell(modelo, marca, ano, disponivel)
-          alert('Filme Cadastrado com sucesso')
+          alert('Celular Cadastrado com sucesso')
 
           setID(resposta.id)
         }
@@ -51,11 +51,11 @@ export default function Home(){
 
 
     function AtualizarCell(item) {
-          setModelo(item.modelo);
-          setMarca(item.marca);
-          setAno(item.ano);
-          setDisponivel(item.disponivel)
-          setID(item.id);
+          setModelo(item.Modelo);
+          setMarca(item.Marca);
+          setAno(item.Ano);
+          setDisponivel(item.Disponivel)
+          setID(item.CellFinder_id);
       }
     
 
@@ -127,7 +127,7 @@ export default function Home(){
                 </div>
 
               <button onClick={Adicionar}> {id === 0 ? 'Salvar' : 'Alterar' } </button>
-              <button onClick={NovoClick}> Novo Filme </button>
+              <button onClick={NovoClick}> Novo Produto </button>
             </div>
 
             <div className='consulta'>
