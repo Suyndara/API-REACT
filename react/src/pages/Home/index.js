@@ -4,12 +4,55 @@ import Purple from '../../assets/images/celular-purple.svg';
 import Celular from '../../assets/images/celular.svg';
 
 
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+
+import { ListarTudo, ListarModelo } from '../../api/CellFinder.js';
+
 export default function Home(){
 
+    const [ modelo, setModelo ] = useState('');
+    const [ marca, setMarca ] = useState('');
+    const [ ano, setAno ] = useState('');
+    const [ disponivel, setDisponivel ] = useState(0);
+
+    const [ listar, setListar ] = useState([]);
+    const [ filtro, setFiltro ] = useState('');
 
 
-  return(
+    async function Adicionar() {
+      try {
+        const resp = await axios.post('http://localhost:5000/celular', {
+          modelo:modelo,
+          marca: marca,
+          ano:ano,
+          disponivel: disponivel
+        });
 
+        return resp
+
+      } catch (error) {
+          alert(error.response.data.erro);
+      }
+    }
+
+
+    async function CarregarTudo() {
+      const resp = await ListarTudo();
+      setListar(resp);
+    }
+
+    async function BuscarModelo() {
+      const resp = await ListarModelo(filtro);
+      setListar(resp)
+    }
+
+    useEffect(() => {
+        CarregarTudo();
+    }, [])
+
+  return (
 
     <div className='pagina-aparelhos'>
         <div className='lateral'>
@@ -45,23 +88,45 @@ export default function Home(){
 
             <div className='cadastro'>
               <h2>Cadastrar o Aparelho</h2>
-              <input type='text' placeholder='Nome'/>
-              <input type='text' placeholder='Modelo'/>
-              <input type='date' placeholder='Ano'/>
-              <select>
-                <option>Status</option>
-                <option>Disponível</option>
-                <option>Indisponível</option>
-              </select>
+              <input type='text' placeholder='Modelo' value={modelo} onChange={e => setModelo(e.target.value)} />
+              <input type='text' placeholder='Marca'  value={marca} onChange={e => setMarca(e.target.value)} />
+              <input type='date' placeholder='Ano'   value={ano} onChange={e => setAno(e.target.value)} />
 
-              <button>Cadastrar</button>
+                <div className="form-row">
+                  <input type="checkbox" checked={disponivel} onChange={e => setDisponivel(e.target.checked)} />
+                  <label> Disponivel </label>
+                </div>
+
+              <button onClick={Adicionar}>Cadastrar</button>
             </div>
 
             <div className='consulta'>
               <h2>Buscar Aparelho</h2>
-              <input type='text' placeholder='Nome'/>
-              
-              
+              <button onClick={BuscarModelo}>Sla</button>
+              <input type='text' placeholder='Modelo' value={filtro} onChange={e => setFiltro(e.target.value)}/>
+
+              <div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th> MODELO </th>
+                      <th> MARCA </th>
+                      <th> ANO </th>
+                      <th> DISPONIVEL </th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {listar.map(item => 
+                      <tr>
+                        <td> { item.Modelo } </td>
+                        <td> { item.Marca } </td>
+                        <td> { item.Ano.substr(0, 10)} </td>
+                        <td> { item.Disponivel ? 'Disponivel' : 'Não Disponivel' } </td>
+                      </tr>  
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@ export async function AdicionarCel(celular) {
 
 
 
-export async function Consultar(busca) {
+export async function Consultar(modelo) {
     const comando = `
         select	    CellFinder_id,
                     Modelo,
@@ -35,7 +35,7 @@ export async function Consultar(busca) {
         `;
 
     const [ dados ] = await conexao.query(comando, [
-        '%' + busca + '%'
+        '%' + modelo + '%'
     ]);
 
     return dados;

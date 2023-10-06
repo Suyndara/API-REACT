@@ -94,9 +94,24 @@ Endpoint.put('/alterar/:id', async (req, resp) => {
     } catch (error) {
         resp.status(500).send({ erro: error.message });
     }
-})
+});
 
 
+
+
+
+Endpoint.get('/celular/busca', async (req, resp) => {
+    try {
+        
+        const modelo = req.query.modelo
+        const resposta = await Consultar(modelo);
+
+        resp.send(resposta)
+
+    } catch (error) {
+        resp.status(500).send({ erro: error.message });
+    }
+});
 
 
 
