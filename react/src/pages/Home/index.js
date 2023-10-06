@@ -122,6 +122,7 @@ export default function Home(){
                         <td> { item.Marca } </td>
                         <td> { item.Ano.substr(0, 10)} </td>
                         <td> { item.Disponivel ? 'Disponivel' : 'Não Disponivel' } </td>
+                        <td> <button> Alterar </button> </td>
                       </tr>  
                     )}
                   </tbody>

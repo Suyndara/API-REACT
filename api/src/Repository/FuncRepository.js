@@ -121,4 +121,24 @@ export async function Alterar(id, item) {
     ]);
 
     return dados.affectedRows;
+};
+
+
+
+
+
+
+export async function BuscarPorID(id) {
+    const comando = `
+        select 	    CellFinder_id,
+                    Modelo,
+                    Marca,
+                    Ano,
+                    Disponivel
+        from	    CellFinder
+        where	    CellFinder_id = ?
+    `;
+
+    const [ dados ] = await conexao.query(comando, [id]);
+    return dados[0];
 }

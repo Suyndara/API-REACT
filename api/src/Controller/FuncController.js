@@ -1,4 +1,4 @@
-import { AdicionarCel, Alterar, Buscar, Consultar, ConsultarDelete, Deletar } from "../Repository/FuncRepository.js";
+import { AdicionarCel, Alterar, Buscar, BuscarPorID, Consultar, ConsultarDelete, Deletar } from "../Repository/FuncRepository.js";
 
 import { Router } from "express";
 const Endpoint = Router();
@@ -100,7 +100,7 @@ Endpoint.put('/alterar/:id', async (req, resp) => {
 
 
 
-Endpoint.get('/celular/busca', async (req, resp) => {
+Endpoint.get('/celular/buscar', async (req, resp) => {
     try {
         
         const modelo = req.query.modelo
@@ -113,6 +113,24 @@ Endpoint.get('/celular/busca', async (req, resp) => {
     }
 });
 
+
+
+
+
+
+
+Endpoint.get('/buscar/:id', async (req, resp) => {
+    try {
+        
+        const { id } = req.params;
+
+        const resposta = await BuscarPorID(id);
+        resp.send(resposta);
+
+    } catch (error) {
+        resp.status(500).send({ erro: error.message });
+    }
+})
 
 
 export default Endpoint;

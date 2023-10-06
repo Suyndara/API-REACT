@@ -18,3 +18,10 @@ export async function ListarModelo(modelo) {
     const resposta = await api.get(`/celular/busca?modelo=${modelo}`);
     return resposta.data;
 }
+
+
+
+export async function BuscarPorID(id) {
+    const resposta = await api.post(`/buscar/${id}`);
+    return resposta.data;
+}
