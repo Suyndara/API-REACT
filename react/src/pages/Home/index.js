@@ -50,14 +50,14 @@ export default function Home(){
     }
 
 
-    async function AtualizarCell() {
-      const resposta = await AlterarCell()
-            setModelo(resposta.modelo);
-            setMarca(resposta.marca);
-            setAno(resposta.ano.substr(0, 10));
-            setDisponivel(resposta.disponivel)
-            setID(resposta.id);
-    }
+    function AtualizarCell(item) {
+          setModelo(item.modelo);
+          setMarca(item.marca);
+          setAno(item.ano);
+          setDisponivel(item.disponivel)
+          setID(item.id);
+      }
+    
 
 
     async function CarregarTudo() {
