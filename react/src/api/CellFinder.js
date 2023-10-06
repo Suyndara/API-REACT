@@ -58,4 +58,4 @@ export async function AlterarCell(CellFinder_id, Modelo, Marca, Ano, Disponivel)
       });
 
     return resposta.data;
-}
+};
