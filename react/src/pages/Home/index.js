@@ -132,9 +132,10 @@ export default function Home(){
 
             <div className='consulta'>
               <h2>Buscar Aparelho</h2>
-              <button onClick={BuscarModelo}>Sla</button>
+              <div className='busca'>       
               <input type='text' placeholder='Modelo' value={filtro} onChange={e => setFiltro(e.target.value)}/>
-
+              <button onClick={BuscarModelo}>Buscar Modelo</button>
+              </div>
               <div>
                 <table>
                   <thead>
