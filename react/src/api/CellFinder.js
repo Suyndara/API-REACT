@@ -29,6 +29,7 @@ export async function BuscarPorID(id) {
 
 
 
-export async function AlterarFilme(id, modelo) {
-    const resposta = await api.put(`/alterar/`)
+export async function RemoverFilme(id) {
+    const resposta = await api.delete(`/deletar/${id}`);
+    return resposta.status
 }

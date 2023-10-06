@@ -58,11 +58,6 @@ Endpoint.delete('/deletar/:id', async (req, resp) => {
         const resposta = await Deletar(id);
 
 
-        const resp1 = await ConsultarDelete(resposta)
-        if (resp1.length == 0)
-        throw new Error('Não ha nada a ser deletado');
-
-
         resp.send()
 
     } catch (error) {

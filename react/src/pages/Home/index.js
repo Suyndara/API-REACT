@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 
-import { ListarTudo, ListarModelo } from '../../api/CellFinder.js';
+import { ListarTudo, ListarModelo, RemoverFilme } from '../../api/CellFinder.js';
 
 export default function Home(){
 
@@ -23,8 +23,6 @@ export default function Home(){
 
     async function Adicionar() {
       try {
-
-        if ( modelo === 0 ) {
           const resp = await axios.post('http://localhost:5000/celular', {
             modelo:modelo,
             marca: marca,
@@ -33,11 +31,6 @@ export default function Home(){
           });
 
           return resp;
-        }
-
-        else {
-          
-        }
 
       } catch (error) {
           alert(error.response.data.erro);
@@ -53,6 +46,11 @@ export default function Home(){
     async function BuscarModelo() {
       const resp = await ListarModelo(filtro);
       setListar(resp)
+    }
+
+
+    async function DeletarFilme(id, nome) {
+      alert(id + '-' + nome)
     }
 
     useEffect(() => {
@@ -130,6 +128,7 @@ export default function Home(){
                         <td> { item.Ano.substr(0, 10)} </td>
                         <td> { item.Disponivel ? 'Disponivel' : 'Não Disponivel' } </td>
                         <td> <button> Alterar </button> </td>
+                        <td> <button onClick={() => DeletarFilme(item.id, item.nome)}> Deletar </button> </td>
                       </tr>  
                     )}
                   </tbody>
