@@ -7,7 +7,7 @@ import Celular from '../../assets/images/celular.svg';
 import { useEffect, useState } from 'react';
 
 
-import { ListarTudo, ListarModelo, RemoverFilme, AdicionarCell, AlterarCell } from '../../api/CellFinder.js';
+import { ListarTudo, ListarModelo, RemoverFilme, AdicionarCell } from '../../api/CellFinder.js';
 
 export default function Home(){
 
@@ -31,11 +31,6 @@ export default function Home(){
           setID(resposta.id)
         }
 
-        else {
-          await AlterarCell(id, modelo, marca, ano, disponivel);
-          alert('Cadastrado com Sucesso')
-        }
-
       } catch (error) {
           alert(error.response.data.erro);
       }
@@ -51,11 +46,11 @@ export default function Home(){
 
 
     function AtualizarCell(item) {
-          setModelo(item.modelo);
-          setMarca(item.marca);
-          setAno(item.ano);
-          setDisponivel(item.disponivel)
-          setID(item.id);
+          setModelo(item.Modelo);
+          setMarca(item.Marca);
+          setAno(item.Ano);
+          setDisponivel(item.Disponivel)
+          setID(item.CellFinder_id);
       }
     
 

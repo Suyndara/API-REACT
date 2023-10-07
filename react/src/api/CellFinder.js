@@ -46,16 +46,3 @@ export async function RemoverFilme(CellFinder_id) {
     const resposta = await api.delete(`/deletar/${CellFinder_id}`);
     return resposta.status
 }
-
-
-
-export async function AlterarCell(CellFinder_id, Modelo, Marca, Ano, Disponivel) {
-    const resposta = await api.put(`/alterar/${CellFinder_id}`, {    
-        modelo: Modelo,
-        marca: Marca,
-        ano: Ano,
-        disponivel: Disponivel
-      });
-
-    return resposta.data;
-};
