@@ -26,7 +26,7 @@ export default function Home(){
 
         if (id === 0) {
           const resposta = await AdicionarCell(modelo, marca, ano, disponivel)
-          alert('Filme Cadastrado com sucesso')
+          alert('Celular Cadastrado com sucesso')
 
           setID(resposta.id)
         }
@@ -122,14 +122,15 @@ export default function Home(){
                 </div>
 
               <button onClick={Adicionar}> {id === 0 ? 'Salvar' : 'Alterar' } </button>
-              <button onClick={NovoClick}> Novo Filme </button>
+              <button onClick={NovoClick}> Novo Produto </button>
             </div>
 
             <div className='consulta'>
               <h2>Buscar Aparelho</h2>
-              <button onClick={BuscarModelo}>Sla</button>
+              <div className='busca'>       
               <input type='text' placeholder='Modelo' value={filtro} onChange={e => setFiltro(e.target.value)}/>
-
+              <button onClick={BuscarModelo}>Buscar Modelo</button>
+              </div>
               <div>
                 <table>
                   <thead>
