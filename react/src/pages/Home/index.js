@@ -2,6 +2,8 @@ import './index.scss';
 import Casinha from '../../assets/images/casinha.svg';
 import Purple from '../../assets/images/celular-purple.svg';
 import Celular from '../../assets/images/celular.svg';
+import Alterar from '../../assets/images/alterar.svg'
+import Deletar from '../../assets/images/deletar.svg'
 
 
 import { useEffect, useState } from 'react';
@@ -131,7 +133,7 @@ export default function Home(){
               <input type='text' placeholder='Modelo' value={filtro} onChange={e => setFiltro(e.target.value)}/>
               <button onClick={BuscarModelo}>Buscar Modelo</button>
               </div>
-              <div>
+              <div className='tabela'>
                 <table>
                   <thead>
                     <tr>
@@ -150,8 +152,8 @@ export default function Home(){
                         <td> { item.Marca } </td>
                         <td> { item.Ano.substr(0, 10)} </td>
                         <td> { item.Disponivel ? 'Disponivel' : 'Não Disponivel' } </td>
-                        <td> <button onClick={() => AtualizarCell(item)}> Alterar </button> </td>
-                        <td> <button onClick={() => DeletarFilme(item.CellFinder_id, item.Modelo)}> Deletar </button> </td>
+                        <td> <img src={Alterar} alt='' onClick={() => AtualizarCell(item)} /></td>
+                        <td> <img src={Deletar} alt= '' onClick={() => DeletarFilme(item.CellFinder_id, item.Modelo)} /></td>
                       </tr>  
                     )}
                   </tbody>
